@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en_us" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="css/style.css" async>
+    <title>Stray Cosplay</title>
+  </head>
+  <body>
+    <video autoplay muted loop src="webm/idle.webm" type="video/webm" id="video"></video>
+    <script type="text/javascript">
+      function replaceVideo(replacement,audio) {
+        video = document.getElementById("video")
+        var neutral = "webm/idle.webm"
+        video.pause();
+        video.src = replacement;
+        video.load();
+        video.loop = false;
+        video.play();
+        var start = new Audio('audio/start/droid_react_to_meow_alt'+pickRandomNumber(3)+'.ogg');
+        start.play();
+        try {
+          audio.play();
+        } catch (error) {
+          console.log(error);
+        }
+        video.onended = function() {
+          video.src = neutral;
+          video.load();
+          video.loop = true;
+          video.play();
+          video.onended = null;
+          try {
+            audio.pause()
+          } catch (error) {
+            console.log(error);
+          }
+          var end = new Audio('audio/end/droid_react_to_meow_end_alt'+pickRandomNumber(3)+'.ogg');
+          end.play();
+        };
+      };
+      function pickRandomNumber(n) {
+        let randomNum = Math.floor(Math.random() * n) + 1;
+        randomNum = randomNum < 10 ? `0${randomNum}` : `${randomNum}`;
+        return randomNum;
+      }
+      document.addEventListener("keydown", function(event) {
+        audio = null
+        if (event.key === "1") {
+          var replacement = "webm/talk.webm"
+          var audio = new Audio('audio/talk/droid_talk_phoneme_loop_11_split'+pickRandomNumber(20)+'.ogg');
+          replaceVideo(replacement,audio);
+        };
+        if (event.key === "2") {
+          var replacement = "webm/angry.webm"
+          var audio = new Audio('audio/angry/droid_get_away_cat_alt'+pickRandomNumber(36)+'.ogg');
+          replaceVideo(replacement,audio);
+        };
+        if (event.key === "3") {
+          var replacement = "webm/grimace.webm"
+          replaceVideo(replacement,audio);
+        };
+        if (event.key === "4") {
+          var replacement = "webm/happy.webm"
+          replaceVideo(replacement,audio);
+        };
+        if (event.key === "5") {
+          var replacement = "webm/love.webm"
+          var audio = new Audio('audio/love/droid_reaction_heart_alt'+pickRandomNumber(3)+'.ogg');
+          replaceVideo(replacement,audio);
+        };
+        if (event.key === "6") {
+          var replacement = "webm/question.webm"
+          replaceVideo(replacement,audio);
+        };
+        if (event.key === "7") {
+          var replacement = "webm/sad.webm"
+          var audio = new Audio('audio/sad/droid_reaction_'+pickRandomNumber(2)+'.ogg');
+          replaceVideo(replacement,audio);
+        };
+        if (event.key === "8") {
+          var replacement = "webm/shocked.webm"
+          var audio = new Audio('audio/shocked/droid_reaction_'+pickRandomNumber(3)+'.ogg');
+          replaceVideo(replacement,audio);
+        };
+        if (event.key === "9") {
+          var replacement = "webm/stressed.webm"
+          var audio = new Audio('audio/stressed/droid_reaction_'+pickRandomNumber(3)+'.ogg');
+          replaceVideo(replacement,audio);
+        };
+        if (event.key === "0") {
+          var replacement = "webm/idle.webm"
+          replaceVideo(replacement,audio);
+        };
+      });
+    </script>
+  </body>
+</html>
